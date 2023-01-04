@@ -1,14 +1,15 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import { Node } from './Node/Node';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <div className="App">
-      Sup mortal! 
+      <Node />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

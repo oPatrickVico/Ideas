@@ -1,0 +1,9 @@
+.App {
+  /* External layout*/
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  /* Modifiers */
+  background-color: hsl(0, 0%, 85%);
+}

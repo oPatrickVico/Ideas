@@ -1,0 +1,11 @@
+.Node {
+  /* External Layout */
+  position: absolute;
+
+  /* Modifiers */
+  background-color: var(--bg-color);
+
+  &__title {
+    color: white;
+  }
+}
