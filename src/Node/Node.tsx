@@ -10,14 +10,7 @@ export function Node() {
   };
 
   return (
-    <article
-      className="Node"
-      style={style}
-      draggable={true}
-      onDrag={(e) => {
-        console.log(e);
-      }}
-    >
+    <article className="Node" style={style}>
       <h1 className="Node__title">This is the first node!</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate

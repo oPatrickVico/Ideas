@@ -4,6 +4,9 @@
   width: 200vw;
   height: 200vh;
 
+  /* Internal layout*/
+  overflow: auto;
+
   /* Modifiers */
   background-color: hsl(0, 0%, 85%);
 }
