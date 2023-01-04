@@ -2,12 +2,14 @@
 
 ## Front
 
-- [ ] Add nodes and links
+- [ ] Add nodes
   - [ ] Double-click for creating a node
+- [ ] Add links
   - [ ] Click on the boundary of a node to prompt the anchor of a link
 - [ ] Add a root that seamlessly scale 
 - [ ] Create small user card, that prompts login
 - [ ] Create landing page
+- [ ] Add middlemouse navigation
 
 ## Back
 
