@@ -12,7 +12,7 @@ export function Node() {
 
   return (
     <article className="Node" style={style}>
-      <h1 className="Node__title">This is the first node!</h1>
+      <h1 className="Node__title">Some title...</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate
         quod ut eius ex repellendus accusantium labore corrupti corporis, ipsum

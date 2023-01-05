@@ -18,4 +18,14 @@ Javascript was a great starting point. But Typescript is just better. A lot of s
 
 As I installed vite for the first time, I also found out about postcss for the first time. I won't use it (explicitly, at least), but it's cool that exists. Next time, for sure!
 
-I tried `styled-components` before, and it was awesome! Very powerful, but did eat a bit of performance potential. I also want to practice BEM because I believe it will further my career.
+I tried `styled-components` before, and it was awesome! I also want to practice BEM because I believe it will further my career.
+
+### Cypress
+
+For this project, I decided to
+
+# What I learned with this project
+
+- Vite
+- Typescript
+- Cypress
