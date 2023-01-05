@@ -19,9 +19,5 @@ describe('App', () => {
       // Check if new node
       expect(screen.getByText(/some title/i)).toBeInTheDocument();
     });
-
-    test('New node gets rendered at the right position', () => {
-      expect(true).toBe(true); // I need cypress for this type of functinoality, ugh
-    });
   });
 });

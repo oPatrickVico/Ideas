@@ -2,8 +2,8 @@
 
 ## Front
 
-- [ ] Add nodes
-  - [ ] Double-click for creating a node
+- [x] Add nodes
+  - [x] Double-click for creating a node
 - [ ] Add links
   - [ ] Click on the boundary of a node to prompt the anchor of a link
 - [ ] Add a root that seamlessly scale 
