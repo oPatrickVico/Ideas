@@ -1,3 +1,4 @@
+import React from 'react';
 import './Node.scss';
 
 export function Node() {
