@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
 import './App.css';
 import { mouseDownHandler } from './helpers/DragToScroll';
+import Link, { LinkProps } from './Link/Link';
 import Node, { NodeProps } from './Node/Node';
 
 function App() {
+  const [linkPropsList, setLinkPropsList] = useState<LinkProps[]>([]);
   const [nodePropsList, setNodePropsList] = useState<NodeProps[]>([]);
 
   return (
     <main
       className="App"
       onMouseDown={mouseDownHandler}
-      onDoubleClick={addNodeProps}
+      onDoubleClick={addLinkProps}
     >
+      {linkPropsList.map((props) => (
+        <Link
+          startX={props.startX}
+          startY={props.startY}
+          endX={props.endX}
+          endY={props.endY}
+        />
+      ))}
       {nodePropsList.map((props) => (
         <Node originX={props.originX} originY={props.originY} />
       ))}
@@ -20,9 +30,19 @@ function App() {
 
   function addNodeProps(e: any): void {
     e.preventDefault();
-    const x = e.clientX;
-    const y = e.clientY;
-    setNodePropsList((a) => a.concat([{ originY: y, originX: x }]));
+    const newNodeProps: NodeProps = { originY: e.clientY, originX: e.clientX };
+    setNodePropsList((a) => a.concat([newNodeProps]));
+  }
+
+  function addLinkProps(e: any): void {
+    e.preventDefault();
+    const newLinkProps: LinkProps = {
+      startX: e.clientX,
+      startY: e.clientY,
+      endX: e.clientX + 200,
+      endY: e.clientY + 200,
+    };
+    setLinkPropsList((a) => a.concat([newLinkProps]));
   }
 }
 

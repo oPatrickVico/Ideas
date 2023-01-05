@@ -7,6 +7,8 @@ export type NodeProps = {
   testid?: string;
 };
 
+// @dryup @BoxType Nodes and links share a lot of data.
+// Abstracting away may be a good idea.
 interface NodeStyle {
   width: number;
   height: number;
@@ -25,7 +27,11 @@ export default function Node({ originX, originY, testid }: NodeProps) {
   };
 
   return (
-    <article className="Node" style={style} data-testid={testid}>
+    <article
+      className="Node"
+      style={style}
+      data-testid={testid ? testid : null}
+    >
       <h1 className="Node__title">Some title...</h1>
       <p className="Node__textbox">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate

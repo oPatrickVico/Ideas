@@ -28,4 +28,3 @@ For this project, I decided to
 
 - Vite
 - Typescript
-- Cypress
