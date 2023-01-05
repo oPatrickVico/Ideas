@@ -1,25 +1,29 @@
-import React, { useEffect, useId, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { mouseDownHandler } from './helpers/DragToScroll';
-import Node from './Node/Node';
+import Node, { NodeProps } from './Node/Node';
 
 function App() {
-  const [nodeList, setNodeList] = useState<any[]>([]);
+  const [nodePropsList, setNodePropsList] = useState<NodeProps[]>([]);
 
   return (
     <main
       className="App"
       onMouseDown={mouseDownHandler}
-      onDoubleClick={(e: any) => {
-        e.preventDefault();
-        const x = e.clientX;
-        const y = e.clientY;
-        setNodeList((a) => a.concat([<Node originX={x} originY={y} />]));
-      }}
+      onDoubleClick={addNodeProps}
     >
-      {nodeList}
+      {nodePropsList.map((props) => (
+        <Node originX={props.originX} originY={props.originY} />
+      ))}
     </main>
   );
+
+  function addNodeProps(e: any): void {
+    e.preventDefault();
+    const x = e.clientX;
+    const y = e.clientY;
+    setNodePropsList((a) => a.concat([{ originY: y, originX: x }]));
+  }
 }
 
 export default App;

@@ -1,11 +1,11 @@
 import React from 'react';
 import './Node.scss';
 
-interface NodeProps {
+export type NodeProps = {
   originX: number;
   originY: number;
   testid?: string;
-}
+};
 
 interface NodeStyle {
   width: number;
