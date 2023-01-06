@@ -1,9 +1,12 @@
 .Node {
-  /* External Layout */
   position: absolute;
+  background-color: black;
 
-  /* Modifiers */
-  background-color: var(--bg-color);
+  &__content-holder {
+    height: 100%;
+    width: 100%;
+    background-color: var(--bg-color);
+  }
 
   &__title {
     color: white;

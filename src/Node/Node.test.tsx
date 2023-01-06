@@ -1,6 +1,7 @@
 import React from 'react';
-import Node from './Node';
+import Node, { isWithinInterval } from './Node';
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 describe('Node', () => {
   it('Renders with origin in the middle of itself', async () => {
@@ -14,5 +15,22 @@ describe('Node', () => {
     const nodeStyle = screen.getByTestId('some-id-luls').style;
     expect(nodeStyle.left).toBe(`${resultLeft}px`);
     expect(nodeStyle.top).toBe(`${resultTop}px`);
+  });
+});
+
+describe('isWithinInterval', () => {
+  it('breaks if values are the same', () => {
+    // To test for intentional error catching,
+    // you have to mock the function call.
+    // Otherwise, jest thinks the error was unexpected,
+    const mockInterval = jest.fn(() => isWithinInterval([0, 0], 1));
+    expect(mockInterval).toThrowError();
+  });
+
+  it('asserts if it is within the boundary correctly', () => {
+    expect(isWithinInterval([0, 2], 1)).toBe(true);
+    expect(isWithinInterval([-3, -1], -2)).toBe(true);
+    expect(isWithinInterval([5, 3], 2)).toBe(false);
+    expect(isWithinInterval([-2, 2], 3)).toBe(false);
   });
 });

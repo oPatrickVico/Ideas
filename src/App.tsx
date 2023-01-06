@@ -31,19 +31,8 @@ function App() {
 
   function addNodeProps(e: any): void {
     e.preventDefault();
-    const newNodeProps: NodeProps = { originY: e.clientY, originX: e.clientX };
+    const newNodeProps: NodeProps = { originY: e.pageY, originX: e.pageX };
     setNodePropsList((a) => a.concat([newNodeProps]));
-  }
-
-  function addLinkProps(e: any): void {
-    e.preventDefault();
-    const newLinkProps: LinkProps = {
-      startX: e.clientX,
-      startY: e.clientY,
-      endX: e.clientX + 200,
-      endY: e.clientY + 200,
-    };
-    setLinkPropsList((a) => a.concat([newLinkProps]));
   }
 }
 

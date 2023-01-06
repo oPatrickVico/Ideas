@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Node.scss';
+
+type Coords = {
+  x: number | null;
+  y: number | null;
+};
 
 export type NodeProps = {
   originX: number;
@@ -23,7 +28,13 @@ const randomColor = () => {
 };
 
 export default function Node({ originX, originY, testid }: NodeProps) {
+  const ref = useRef<any>();
   const [color] = useState(randomColor());
+  const [anchorCoords, setAnchorCoords] = useState<Coords>({
+    x: null,
+    y: null,
+  });
+
   const style: NodeStyle = {
     width: 500,
     height: 500,
@@ -32,19 +43,73 @@ export default function Node({ originX, originY, testid }: NodeProps) {
     '--bg-color': `#${color}`,
   };
 
+  // ----------------------------------------------------------------
+  // @dryup @useAnchorEvents transform this code into a custom hook
+  function updateAnchorCoords(e: any): void {
+    if (e.target !== ref.current) {
+      return;
+    }
+    setAnchorCoords({ x: e.clientX, y: e.clientY });
+  }
+
+  function clearAnchorCoords(): void {
+    setAnchorCoords({ x: null, y: null });
+  }
+
+  // Add event listener with correct capturing
+  useEffect(() => {
+    ref.current.addEventListener('mousemove', updateAnchorCoords, {
+      capture: true,
+    });
+    ref.current.addEventListener('mouseleave', clearAnchorCoords, {
+      capture: true,
+    });
+
+    return () => {
+      ref.current.removeEventListener('mousemove', updateAnchorCoords);
+      ref.current.removeEventListener('mouseleave', clearAnchorCoords);
+    };
+  }, [ref.current]);
+  // ----------------------------------------------------------------
+  // ----------------------------------------------------------------
+
   return (
     <article
       className="Node"
-      style={style}
+      style={{ ...style, padding: 30 }}
       data-testid={testid ? testid : null}
+      ref={ref}
     >
-      <h1 className="Node__title">Some title...</h1>
-      <p className="Node__textbox">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate
-        quod ut eius ex repellendus accusantium labore corrupti corporis, ipsum
-        temporibus quasi soluta fuga quo aut dicta reiciendis sit maiores!
-        Quaerat.
-      </p>
+      <div className="Node__content-holder">
+        <h1 className="Node__title">Some title...</h1>
+        <p className="Node__textbox">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate
+          quod ut eius ex repellendus accusantium labore corrupti corporis,
+          ipsum temporibus quasi soluta fuga quo aut dicta reiciendis sit
+          maiores! Quaerat.
+        </p>
+        <AnchorDisc x={anchorCoords.x} y={anchorCoords.y} />
+      </div>
     </article>
+  );
+}
+
+function AnchorDisc({ x, y }: Coords) {
+  if (!x || !y) return null;
+
+  return (
+    <div
+      style={{
+        backgroundColor: 'red',
+        width: 16,
+        height: 16,
+        borderRadius: '50%',
+        position: 'fixed',
+        top: y - 8,
+        left: x - 8,
+      }}
+    >
+      &nbsp;
+    </div>
   );
 }
