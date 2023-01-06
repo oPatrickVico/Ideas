@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { globalState } from '../main';
 import './Node.scss';
 
 type Coords = {
@@ -10,6 +11,7 @@ export type NodeProps = {
   originX: number;
   originY: number;
   testid?: string;
+  [key: string]: any;
 };
 
 // @dryup @BoxType Nodes and links share a lot of data.
@@ -28,7 +30,7 @@ const randomColor = () => {
 };
 
 export default function Node({ originX, originY, testid }: NodeProps) {
-  const ref = useRef<any>();
+  const ref = useRef<any>(null);
   const [color] = useState(randomColor());
   const [anchorCoords, setAnchorCoords] = useState<Coords>({
     x: null,
@@ -56,18 +58,32 @@ export default function Node({ originX, originY, testid }: NodeProps) {
     setAnchorCoords({ x: null, y: null });
   }
 
+  function startLinkage(e: any): void {
+    if (globalState.current === 'linking') {
+      alert(globalState.current);
+      return;
+    }
+    globalState.current = 'linking';
+  }
+
   // Add event listener with correct capturing
   useEffect(() => {
+    if (!ref.current) return;
+
     ref.current.addEventListener('mousemove', updateAnchorCoords, {
       capture: true,
     });
     ref.current.addEventListener('mouseleave', clearAnchorCoords, {
       capture: true,
     });
+    ref.current.addEventListener('click', startLinkage, {
+      capture: true,
+    });
 
     return () => {
       ref.current.removeEventListener('mousemove', updateAnchorCoords);
       ref.current.removeEventListener('mouseleave', clearAnchorCoords);
+      ref.current.removeEventListener('click', startLinkage);
     };
   }, [ref.current]);
   // ----------------------------------------------------------------
