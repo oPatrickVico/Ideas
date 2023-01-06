@@ -12,18 +12,19 @@ function App() {
     <main
       className="App"
       onMouseDown={mouseDownHandler}
-      onDoubleClick={addLinkProps}
+      onDoubleClick={addNodeProps}
     >
-      {linkPropsList.map((props) => (
+      {linkPropsList.map((props, linkIndex) => (
         <Link
           startX={props.startX}
           startY={props.startY}
           endX={props.endX}
           endY={props.endY}
+          key={linkIndex}
         />
       ))}
-      {nodePropsList.map((props) => (
-        <Node originX={props.originX} originY={props.originY} />
+      {nodePropsList.map((props, nodeIndex) => (
+        <Node originX={props.originX} originY={props.originY} key={nodeIndex} />
       ))}
     </main>
   );
