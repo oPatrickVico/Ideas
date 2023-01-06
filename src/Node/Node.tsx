@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Node.scss';
 
 export type NodeProps = {
@@ -17,13 +17,19 @@ interface NodeStyle {
   [key: string]: any;
 }
 
+const randomColor = () => {
+  let newColor = Math.floor(Math.random() * 16777215).toString(16);
+  return newColor.length === 6 ? newColor : newColor + '0';
+};
+
 export default function Node({ originX, originY, testid }: NodeProps) {
+  const [color] = useState(randomColor());
   const style: NodeStyle = {
     width: 500,
     height: 500,
     left: originX - 500 / 2,
     top: originY - 500 / 2,
-    '--bg-color': 'hsl(190,50%,70%)',
+    '--bg-color': `#${color}`,
   };
 
   return (

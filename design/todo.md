@@ -31,4 +31,5 @@
   - [ ] Does the node gets rendered in the right position the click?
   - [ ] Can I create links by clicking in the border of the nodes?
   - [ ] Can I drag nodes around?
-- [ ] 
+  - [ ] Is the creation of a node over another disabled?
+- [ ]
