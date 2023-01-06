@@ -1,0 +1,7 @@
+
+Feats:
+Drag nodes around (mousedown + mousemove + mouseup)
+Create links by clicking on the sides of two nodes
+  Create two anchors. 
+    First click creates one anchor. 
+    If 

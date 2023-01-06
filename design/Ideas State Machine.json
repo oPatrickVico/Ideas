@@ -1,0 +1,23 @@
+{
+  "title": "Ideas State Machine",
+  "schema": [
+    { "type": "string", "name": "mode" },
+    { "name": "dblClick", "type": "string" },
+    { "name": "auxClick", "type": "string" },
+    { "type": "string", "name": "click" }
+  ],
+  "instances": [
+    {
+      "dblClick": "creates node",
+      "auxClick": "DragToScroll",
+      "click": "select item (nodes or links) || starts linking mode",
+      "mode": "normal"
+    },
+    {
+      "dblClick": "exits linking mode",
+      "auxClick": "DragToScroll",
+      "click": "completes linking mode",
+      "mode": "linking"
+    }
+  ]
+}
